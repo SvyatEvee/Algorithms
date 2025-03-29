@@ -1,0 +1,11 @@
+The number of nodes in the graph: 6
+Next, you need to specify the node number and neighbors with the weight in parentheses in each line.
+Example:
+1: 2(3) 3(2)
+Enter your data:
+1: 2(3) 3(1) 4(3)
+2: 1(3) 3(4)
+3: 1(1) 2(4) 5(7) 6(5)
+4: 1(3) 6(2)
+5: 3(7) 6(4)
+6: 4(2) 5(4) 3(5) 
