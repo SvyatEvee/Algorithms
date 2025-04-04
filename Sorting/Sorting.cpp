@@ -5,6 +5,7 @@
 #include <random>
 #include <algorithm>
 #include <vector>
+#include "simpletimer.h"
 
 using namespace std;
 
@@ -70,37 +71,25 @@ int main()
 {
     //Генератор
     random_device rd;
-    mt19937 gen(rd());
+    mt19937 gen(1);
     uniform_int_distribution<int> dist1(5, 10);
-    uniform_int_distribution<int> dist2(1, 100);
+    uniform_int_distribution<int> dist2(1, 1e6);
 
-    int size1 = dist1(gen);
-    int size2 = dist1(gen);
+    vector<int> v1(500000);
+    std::generate(v1.begin(), v1.end(), [&]() { return dist2(gen); });
 
-    vector<int> vec1(size1);
-    std::generate(vec1.begin(), vec1.end(), [&]() { return dist2(gen);  });
+    vector<int> v2(v1);
+
+    {
+        SimpleTimer t;
+        v1 =merge_sorting(v1);
+    }
+
+    {
+        SimpleTimer t;
+        choise_sorting(v2);
+    }
     
-
-    vector<int> vec2(size2);
-    std::generate(vec2.begin(), vec2.end(), [&]() { return dist2(gen);  });
-    std::sort(vec2.begin(), vec2.end());
-
-    for (auto i : vec1) {
-        cout << i << ' ';
-    }
-    cout << endl;
-    for (auto i : vec2) {
-        cout << i << ' ';
-    }
-    cout << endl;
-
-    vector<int> mrg;
-
-    mrg = merge_sorting(vec1);
-    for (auto i : mrg) {
-        cout << i << ' ';
-    }
-    cout << endl;
 
     return 0;
 }
