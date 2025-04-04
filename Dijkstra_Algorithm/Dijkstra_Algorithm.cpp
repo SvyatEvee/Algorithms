@@ -39,13 +39,15 @@ int main()
         {inf, inf, 5,   1,   1,   0},
     };
 
-    int v = 0; // Стартовая вершина
+    int start_node = 3;
+    int v = start_node; // Стартовая вершина
     const unsigned int node_number = Connectivity.size();
 
-    vector<int> Visited(v);
+    vector<int> Visited;
+    Visited.push_back(v);
     vector<int> T(node_number, inf);
     T[v] = 0; // Нулевой вес для стартовой вершины
-    vector<int> shortest_way(node_number, 0);
+    vector<int> shortest_way(node_number, v);
     
     while (v != -1) {
         for (int j = 0; j < node_number ;j++) {
@@ -71,7 +73,7 @@ int main()
             Visited.push_back(v);
     }
 
-    int start = 0;
+    int start = start_node;
     int end = 5;
     int current = end;
     vector<int> way;
